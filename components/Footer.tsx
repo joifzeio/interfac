@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
           <div className="flex flex-col gap-2">
             <h4 className="font-mono text-xs text-gray-500 uppercase tracking-widest mb-4">Navigation</h4>
             <a href="/" className="text-lg font-bold uppercase hover:text-[#FF4500] transition-colors w-max">Accueil</a>
-            <a href="/#releases" className="text-lg font-bold uppercase hover:text-[#FF4500] transition-colors w-max">Upcoming Events</a>
-            <a href="/#events" className="text-lg font-bold uppercase hover:text-[#FF4500] transition-colors w-max">Past Events</a>
+            <a href="/events" className="text-lg font-bold uppercase hover:text-[#FF4500] transition-colors w-max">Prochaines Dates</a>
+            <a href="/#events" className="text-lg font-bold uppercase hover:text-[#FF4500] transition-colors w-max">Événements Passés</a>
           </div>
 
           {/* Column 3: Contact */}
