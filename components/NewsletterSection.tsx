@@ -2,42 +2,47 @@ import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { supabase } from '../lib/supabase';
 
 const CITIES = ['PARIS', 'RENNES', 'NANCY', 'NICE', 'LYON', 'AUTRE'];
 
 const NewsletterSection: React.FC = () => {
   const { t } = useLanguage();
   const [email, setEmail] = useState('');
-  const [city, setCity] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [selectedCity, setSelectedCity] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle'); // 'idle', 'loading', 'success'
 
-  const handleSubscribe = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !city) {
-      toast.error("Choisis ta ville et ton email !");
+    if (!email || !selectedCity) {
+      toast.error(t('newsletter.error_missing'));
       return;
     }
 
-    setIsLoading(true);
+    setStatus('loading');
 
     try {
-      const { error } = await supabase.from('subscribers').insert({
-        email,
-        city
-      });
+      const formData = new FormData();
+      formData.append('entry.1045781291', email); // Email
+      formData.append('entry.1065046570', selectedCity); // City
+      formData.append('entry.1166974658', ''); // Phone (empty)
 
-      if (error) throw error;
+      await fetch(
+        'https://docs.google.com/forms/d/e/1FAIpQLScSuAjZzJDktRBuEXFAEjvlNmPsHdYmyed-Ihn56wstnxcCDQ/formResponse',
+        {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors'
+        }
+      );
 
-      setIsSuccess(true);
+      setStatus('success');
+      toast.success(t('newsletter.success'));
       setEmail('');
-      setCity('');
+      setSelectedCity('');
     } catch (error) {
-      console.error('Subscription error:', error);
-      toast.error("Une erreur est survenue.");
-    } finally {
-      setIsLoading(false);
+      console.error('Error submitting form:', error);
+      toast.error(t('newsletter.error'));
+      setStatus('idle');
     }
   };
 
