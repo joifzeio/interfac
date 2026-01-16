@@ -10,8 +10,8 @@ const EventsSection: React.FC = () => {
     <div className="w-full bg-black text-white py-20 px-4 md:px-12">
       <div className="max-w-[1600px] mx-auto">
         <div className="flex justify-between items-end mb-12 border-b border-white/20 pb-4">
-          <h2 className="text-4xl md:text-6xl uppercase font-bold tracking-tighter">Past Events</h2>
-          <a href="#events" className="font-mono text-sm uppercase hover:underline">View All</a>
+          <h2 className="text-4xl md:text-6xl uppercase font-bold tracking-tighter">Événements Passés</h2>
+          <a href="/events" className="font-mono text-sm uppercase hover:underline">Voir Tout</a>
         </div>
 
         <Swiper
@@ -40,8 +40,8 @@ const EventsSection: React.FC = () => {
                   {event.address && <p className="font-mono text-xs text-gray-500 uppercase">{event.address}</p>}
                 </div>
                 <div className="mt-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                  <button className="border border-white/50 px-4 py-2 text-xs font-mono uppercase hover:bg-white hover:text-black transition-colors">Tickets</button>
-                  <button className="text-xs font-mono uppercase hover:underline p-2">+ More Info</button>
+                  <button className="border border-white/50 px-4 py-2 text-xs font-mono uppercase hover:bg-white hover:text-black transition-colors">Billets</button>
+                  <button className="text-xs font-mono uppercase hover:underline p-2">+ Plus d'infos</button>
                 </div>
               </div>
             </SwiperSlide>
