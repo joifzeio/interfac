@@ -3,7 +3,11 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
-const CITIES = ['PARIS', 'RENNES', 'NANCY', 'NICE', 'LYON', 'AUTRE'];
+const CITIES = [
+  'PARIS', 'TOURS', 'RENNES', 'LILLE', 'DIJON', 'ANGERS', 'NANTES',
+  'ROUEN', 'LIMOGES', 'BESANCON', 'POITIERS', 'ORLEANS', 'CAEN',
+  'LYON', 'MARSEILLE', 'TOULOUSE', 'MONTPELLIER', 'BORDEAUX', 'CLERMONT-FERRAND'
+];
 
 const NewsletterSection: React.FC = () => {
   const { t } = useLanguage();
