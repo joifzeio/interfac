@@ -58,10 +58,7 @@ const MenuOverlay: React.FC<MenuOverlayProps> = ({ isOpen, closeMenu }) => {
         </div>
 
         <div className="max-w-[1600px] w-full mx-auto mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-sm md:text-base uppercase text-white/70">
-          <a href="#" className="hover:text-white transition-colors">+ Instagram</a>
-          <a href="#" className="hover:text-white transition-colors">+ YouTube</a>
-          <a href="#" className="hover:text-white transition-colors">+ SoundCloud</a>
-          <a href="#" className="hover:text-white transition-colors">+ Beatport</a>
+          <a href="https://www.instagram.com/p/DTJBps1CNR_/?img_index=1" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">+ Instagram</a>
         </div>
       </div>
 

@@ -20,7 +20,7 @@ const HeroSlider: React.FC = () => {
       <div className="absolute inset-0 bg-black/40"></div>
 
       {/* Main Content */}
-      <div className="absolute inset-0 flex items-center justify-center p-4 z-10 pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center p-4 z-10 pointer-events-none translate-y-[12.5vh]">
         <h1 className="text-5xl md:text-7xl lg:text-9xl font-black text-center leading-none tracking-tighter mix-blend-overlay opacity-90">
           {t('hero.title')} <br />
           <span className="text-white text-stroke-orange">{t('hero.subtitle')}</span>
