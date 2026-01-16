@@ -98,10 +98,13 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('fr');
+  // Hardcoded to 'fr'
+  const language: Language = 'fr';
+  // no-op setter
+  const setLanguage = (_: Language) => { };
 
   const t = (key: string) => {
-    return translations[language][key] || key;
+    return translations['fr'][key] || key;
   };
 
   return (
