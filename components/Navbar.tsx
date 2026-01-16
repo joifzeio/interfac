@@ -14,17 +14,17 @@ const Navbar: React.FC<NavbarProps> = ({ isMenuOpen, setIsMenuOpen }) => {
       <div className="max-w-[1600px] mx-auto flex justify-between items-center relative pointer-events-auto">
 
         {/* Left Side: Language Switcher */}
-        <div className="flex items-center font-mono text-sm font-bold tracking-wider">
+        <div className="flex items-center font-mono text-sm font-bold tracking-wider pointer-events-auto">
           <button
             onClick={() => setLanguage('fr')}
-            className={`transition-colors duration-300 ${language === 'fr' ? 'text-white' : 'text-white/40 hover:text-white'}`}
+            className={`transition-all duration-300 ${language === 'fr' ? 'text-white scale-110' : 'text-white/40 hover:text-white'}`}
           >
             FR
           </button>
           <span className="mx-2 text-white/40">/</span>
           <button
             onClick={() => setLanguage('en')}
-            className={`transition-colors duration-300 ${language === 'en' ? 'text-white' : 'text-white/40 hover:text-white'}`}
+            className={`transition-all duration-300 ${language === 'en' ? 'text-white scale-110' : 'text-white/40 hover:text-white'}`}
           >
             EN
           </button>

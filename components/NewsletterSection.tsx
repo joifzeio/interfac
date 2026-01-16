@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { supabase } from '../lib/supabase';
 
 const CITIES = ['PARIS', 'RENNES', 'NANCY', 'NICE', 'LYON', 'AUTRE'];
 
@@ -22,18 +23,12 @@ const NewsletterSection: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const formData = new FormData();
-      formData.append('entry.549620649', email);
-      formData.append('entry.1562012737', city);
+      const { error } = await supabase.from('subscribers').insert({
+        email,
+        city
+      });
 
-      await fetch(
-        'https://docs.google.com/forms/d/e/1FAIpQLScSuAjZzJDktRBuEXFAEjvlNmPsHdYmyed-Ihn56wstnxcCDQ/formResponse',
-        {
-          method: 'POST',
-          body: formData,
-          mode: 'no-cors'
-        }
-      );
+      if (error) throw error;
 
       setIsSuccess(true);
       setEmail('');
