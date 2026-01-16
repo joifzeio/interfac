@@ -15,38 +15,29 @@ const NewsletterSection: React.FC = () => {
   const [selectedCity, setSelectedCity] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle'); // 'idle', 'loading', 'success'
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
     if (!email || !selectedCity) {
+      e.preventDefault();
       toast.error(t('newsletter.error_missing'));
       return;
     }
 
+    // Debugging as requested
+    console.log('Submitting City:', selectedCity);
+    console.log('Submitting Email:', email);
+
     setStatus('loading');
+    // Allow default submission to iframe
+  };
 
-    try {
-      const formData = new FormData();
-      formData.append('entry.1045781291', email); // Email
-      formData.append('entry.1065046570', selectedCity); // City
-      formData.append('entry.1166974658', ''); // Phone (empty)
-
-      await fetch(
-        'https://docs.google.com/forms/d/e/1FAIpQLScSuAjZzJDktRBuEXFAEjvlNmPsHdYmyed-Ihn56wstnxcCDQ/formResponse',
-        {
-          method: 'POST',
-          body: formData,
-          mode: 'no-cors'
-        }
-      );
-
+  const handleIframeLoad = () => {
+    if (status === 'loading') {
       setStatus('success');
       toast.success(t('newsletter.success'));
       setEmail('');
       setSelectedCity('');
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast.error(t('newsletter.error'));
-      setStatus('idle');
+      // Reset status after a delay if needed, or keep as success
+      setTimeout(() => setStatus('idle'), 3000);
     }
   };
 
@@ -60,9 +51,23 @@ const NewsletterSection: React.FC = () => {
           {t('newsletter.desc')}
         </p>
 
-        <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4 w-full max-w-2xl mx-auto items-stretch">
+        <iframe
+          name="hidden_iframe"
+          id="hidden_iframe"
+          style={{ display: 'none' }}
+          onLoad={handleIframeLoad}
+        />
+
+        <form
+          action="https://docs.google.com/forms/d/e/1FAIpQLScSuAjZzJDktRBuEXFAEjvlNmPsHdYmyed-Ihn56wstnxcCDQ/formResponse"
+          method="POST"
+          target="hidden_iframe"
+          onSubmit={handleSubmit}
+          className="flex flex-col md:flex-row gap-4 w-full max-w-2xl mx-auto items-stretch"
+        >
           <div className="flex-1 flex gap-4">
             <select
+              name="entry.1562012737" // Correct City ID
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
               disabled={status === 'loading' || status === 'success'}
@@ -76,6 +81,7 @@ const NewsletterSection: React.FC = () => {
             </select>
             <input
               type="email"
+              name="entry.549620649" // Correct Email ID
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t('newsletter.placeholder')}
