@@ -56,12 +56,12 @@ const NewsletterSection: React.FC = () => {
           {t('newsletter.desc')}
         </p>
 
-        <form onSubmit={handleSubscribe} className="flex flex-col md:flex-row gap-4 w-full max-w-2xl mx-auto items-stretch">
+        <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4 w-full max-w-2xl mx-auto items-stretch">
           <div className="flex-1 flex gap-4">
             <select
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              disabled={isLoading || isSuccess}
+              value={selectedCity}
+              onChange={(e) => setSelectedCity(e.target.value)}
+              disabled={status === 'loading' || status === 'success'}
               className="bg-black border border-white text-white px-4 py-3 font-mono text-sm focus:outline-none focus:border-[#FF4500] uppercase appearance-none min-w-[140px] h-[46px]"
               required
             >
@@ -75,23 +75,23 @@ const NewsletterSection: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t('newsletter.placeholder')}
-              disabled={isLoading || isSuccess}
+              disabled={status === 'loading' || status === 'success'}
               className="flex-1 w-full bg-black border-b border-white px-4 py-3 font-mono text-sm focus:outline-none focus:border-gray-500 uppercase placeholder-white/70 disabled:opacity-50 disabled:cursor-not-allowed h-[46px]"
               required
             />
           </div>
           <button
             type="submit"
-            disabled={isLoading || isSuccess}
+            disabled={status === 'loading' || status === 'success'}
             className={`px-8 py-3 font-mono text-sm uppercase transition-colors flex items-center justify-center min-w-[240px] h-[46px]
-              ${isSuccess
+              ${status === 'success'
                 ? 'bg-green-600 text-white cursor-default hover:bg-green-600'
                 : 'bg-[#FF4500] text-white hover:bg-[#FF4500]/80'
               } disabled:opacity-80`}
           >
-            {isLoading ? (
+            {status === 'loading' ? (
               <Loader2 className="w-5 h-5 animate-spin" />
-            ) : isSuccess ? (
+            ) : status === 'success' ? (
               "INSCRIPTION VALIDÉE ✅"
             ) : (
               t('newsletter.btn')
