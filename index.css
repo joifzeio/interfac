@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SoireeINTERFAC Design System - Industrial Luxury Aesthetic */
+
+@layer base {
+  :root {
+    /* Core Colors */
+    --background: 0 0% 2%;
+    --foreground: 0 0% 93%;
+    
+    /* Void Black - Deep dark base */
+    --void-black: 0 0% 2%;
+    
+    /* Off White - Primary text */
+    --off-white: 0 0% 93%;
+    
+    /* International Orange - Accent color */
+    --intl-orange: 16 100% 50%;
+    
+    /* Glass Black - Overlay */
+    --glass-black: 0 0% 2%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 93%;
+
+    --popover: 0 0% 2%;
+    --popover-foreground: 0 0% 93%;
+
+    --primary: 16 100% 50%;
+    --primary-foreground: 0 0% 2%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 93%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 16 100% 50%;
+    --accent-foreground: 0 0% 2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 16 100% 50%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 60%;
+    --sidebar-primary: 16 100% 50%;
+    --sidebar-primary-foreground: 0 0% 2%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 93%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 16 100% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 2%;
+    --foreground: 0 0% 93%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 93%;
+
+    --popover: 0 0% 2%;
+    --popover-foreground: 0 0% 93%;
+
+    --primary: 16 100% 50%;
+    --primary-foreground: 0 0% 2%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 93%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 16 100% 50%;
+    --accent-foreground: 0 0% 2%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 16 100% 50%;
+    
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 60%;
+    --sidebar-primary: 16 100% 50%;
+    --sidebar-primary-foreground: 0 0% 2%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 93%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 16 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--void-black));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 20%);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--intl-orange));
+  }
+
+  ::selection {
+    background: hsl(var(--intl-orange));
+    color: hsl(var(--void-black));
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Syne', sans-serif;
+  }
+}

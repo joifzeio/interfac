@@ -1,0 +1,5 @@
+{
+  "name": "Drumcode Clone",
+  "description": "A high-fidelity clone of the Drumcode Records website featuring dark aesthetics, smooth sliders, and responsive layout using React and Tailwind CSS.",
+  "requestFramePermissions": []
+}
