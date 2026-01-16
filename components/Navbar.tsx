@@ -11,10 +11,9 @@ const Navbar: React.FC<NavbarProps> = ({ isMenuOpen, setIsMenuOpen }) => {
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-transparent mix-blend-difference text-white py-6 px-4 md:px-12 pointer-events-none">
-      <div className="max-w-[1600px] mx-auto flex justify-between items-center relative pointer-events-auto">
+      <div className="max-w-[1600px] mx-auto flex justify-end items-center relative pointer-events-auto">
 
-        {/* Left Side: Language Switcher - REMOVED (French Only) */}
-        <div className="hidden"></div>
+
 
         {/* Center: Brand/Title */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none hidden md:block">

@@ -24,10 +24,9 @@ const MenuOverlay: React.FC<MenuOverlayProps> = ({ isOpen, closeMenu }) => {
   };
 
   return (
-    <div 
-      className={`fixed inset-0 bg-black z-40 transition-transform duration-500 ease-in-out ${
-        isOpen ? 'translate-y-0' : '-translate-y-full'
-      }`}
+    <div
+      className={`fixed inset-0 bg-black z-40 transition-transform duration-500 ease-in-out ${isOpen ? 'translate-y-0' : '-translate-y-full'
+        }`}
     >
       <div className="w-full h-full flex flex-col relative pt-32 pb-10 px-4 md:px-12 overflow-y-auto">
         <Crosshair position="bottom-right" className="opacity-50" />
@@ -37,8 +36,8 @@ const MenuOverlay: React.FC<MenuOverlayProps> = ({ isOpen, closeMenu }) => {
           <ul className="flex flex-col w-full">
             {NAV_LINKS.map((link) => (
               <li key={link.number} className="group border-t border-white/20 last:border-b relative">
-                <a 
-                  href={link.href} 
+                <a
+                  href={link.label === 'Events' ? '/events' : link.href}
                   onClick={closeMenu}
                   className="flex items-center justify-between py-6 md:py-8 lg:py-10 hover:px-4 transition-all duration-300"
                 >
@@ -50,7 +49,7 @@ const MenuOverlay: React.FC<MenuOverlayProps> = ({ isOpen, closeMenu }) => {
                     <span className="hidden group-hover:block font-mono text-white text-sm uppercase">Open</span>
                   </div>
                 </a>
-                
+
                 {/* Image Reveal on Hover (Simulated) */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] opacity-0 group-hover:opacity-20 pointer-events-none transition-opacity duration-300 z-[-1] bg-cover bg-center hidden md:block" style={{ backgroundImage: `url(${link.image})` }}></div>
               </li>
@@ -65,7 +64,7 @@ const MenuOverlay: React.FC<MenuOverlayProps> = ({ isOpen, closeMenu }) => {
           <a href="#" className="hover:text-white transition-colors">+ Beatport</a>
         </div>
       </div>
-      
+
       <style>{`
         .text-stroke {
           -webkit-text-stroke: 1px #7e7e7e;

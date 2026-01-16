@@ -10,6 +10,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 import HomePage from './pages/HomePage';
+import EventsPage from './pages/EventsPage';
 import LoginPage from './pages/LoginPage';
 import AdminDashboard from './pages/AdminDashboard';
 // import LegalPage from './pages/LegalPage'; // Kept for reference if needed, or remove.
@@ -31,6 +32,7 @@ const AppContent = () => {
       <Sonner />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/events" element={<EventsPage />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/cgv" element={<CGV />} />
         <Route path="/confidentialite" element={<Confidentialite />} />

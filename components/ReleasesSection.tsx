@@ -30,7 +30,7 @@ const ReleasesSection: React.FC<ReleasesSectionProps> = ({ onOpenModal }) => {
       <div className="max-w-[1600px] mx-auto">
         <div className="flex justify-between items-end mb-12 border-b border-white/20 pb-4">
           <h2 className="text-4xl md:text-6xl uppercase font-black tracking-tighter text-action-orange">{t('releases.title')}</h2>
-          <a href="#events" className="font-mono text-sm uppercase hover:text-action-orange transition-colors">{t('releases.view_all')}</a>
+          <a href="/events" className="font-mono text-sm uppercase hover:text-action-orange transition-colors">{t('releases.view_all')}</a>
         </div>
 
         <div className="relative group">
