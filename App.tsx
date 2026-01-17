@@ -51,16 +51,31 @@ const AppContent = () => {
   );
 };
 
+import LoadingScreen from './components/LoadingScreen';
+
 const App = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 50000); // 50 seconds delay as requested
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <BrowserRouter>
-      <LanguageProvider>
-        <EventsProvider>
-          <AuthProvider>
-            <AppContent />
-          </AuthProvider>
-        </EventsProvider>
-      </LanguageProvider>
+      {isLoading && <LoadingScreen />}
+      <div className={isLoading ? 'hidden' : ''}>
+        <LanguageProvider>
+          <EventsProvider>
+            <AuthProvider>
+              <AppContent />
+            </AuthProvider>
+          </EventsProvider>
+        </LanguageProvider>
+      </div>
     </BrowserRouter>
   );
 };
