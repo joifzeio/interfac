@@ -13,31 +13,42 @@ const NewsletterSection: React.FC = () => {
   const { t } = useLanguage();
   const [email, setEmail] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle'); // 'idle', 'loading', 'success'
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Stop the browser from doing its "empty envelope" thing
+
     if (!email || !selectedCity) {
-      e.preventDefault();
       toast.error(t('newsletter.error_missing'));
       return;
     }
 
-    // Debugging as requested
-    console.log('Submitting City:', selectedCity);
-    console.log('Submitting Email:', email);
-
     setStatus('loading');
-    // Allow default submission to iframe
-  };
 
-  const handleIframeLoad = () => {
-    if (status === 'loading') {
+    // Create the data manually so it doesn't matter if inputs are disabled
+    const formData = new FormData();
+    formData.append('entry.549620649', email);
+    formData.append('entry.1562012737', selectedCity);
+
+    try {
+      // Send it via Javascript (Fetch)
+      await fetch('https://docs.google.com/forms/d/e/1FAIpQLScSuAjZzJDktRBuEXFAEjvlNmPsHdYmyed-Ihn56wstnxcCDQ/formResponse', {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors' // Google Forms requirement
+      });
+
+      // Success!
       setStatus('success');
       toast.success(t('newsletter.success'));
       setEmail('');
       setSelectedCity('');
-      // Reset status after a delay if needed, or keep as success
       setTimeout(() => setStatus('idle'), 3000);
+
+    } catch (error) {
+      console.error('Submission error:', error);
+      setStatus('idle');
+      toast.error("Error submitting form. Please try again.");
     }
   };
 
@@ -51,23 +62,14 @@ const NewsletterSection: React.FC = () => {
           {t('newsletter.desc')}
         </p>
 
-        <iframe
-          name="hidden_iframe"
-          id="hidden_iframe"
-          style={{ display: 'none' }}
-          onLoad={handleIframeLoad}
-        />
+        {/* Removed the Iframe - We don't need it anymore */}
 
         <form
-          action="https://docs.google.com/forms/d/e/1FAIpQLScSuAjZzJDktRBuEXFAEjvlNmPsHdYmyed-Ihn56wstnxcCDQ/formResponse"
-          method="POST"
-          target="hidden_iframe"
           onSubmit={handleSubmit}
           className="flex flex-col md:flex-row gap-4 w-full max-w-2xl mx-auto items-stretch"
         >
           <div className="flex-1 flex gap-4">
             <select
-              name="entry.1562012737" // Correct City ID
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
               disabled={status === 'loading' || status === 'success'}
@@ -81,7 +83,6 @@ const NewsletterSection: React.FC = () => {
             </select>
             <input
               type="email"
-              name="entry.549620649" // Correct Email ID
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t('newsletter.placeholder')}
