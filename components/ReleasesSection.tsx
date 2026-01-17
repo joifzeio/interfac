@@ -26,7 +26,7 @@ const ReleasesSection: React.FC<ReleasesSectionProps> = ({ onOpenModal }) => {
   };
 
   return (
-    <div className="w-full bg-void-black text-white py-20 px-4 md:px-12 border-t border-white/10" id="releases">
+    <div className="w-full bg-transparent text-white py-24 px-4 md:px-12 border-t border-white/10" id="releases">
       <div className="max-w-[1600px] mx-auto">
         <div className="flex justify-between items-end mb-12 border-b border-white/20 pb-4">
           <h2 className="text-4xl md:text-6xl uppercase font-black tracking-tighter text-action-orange">{t('releases.title')}</h2>

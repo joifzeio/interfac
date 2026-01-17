@@ -7,7 +7,7 @@ const EventsSection: React.FC = () => {
   const { data: events } = useEvents(true);
 
   return (
-    <div className="w-full bg-black text-white py-20 px-4 md:px-12">
+    <div className="w-full bg-transparent text-white py-20 px-4 md:px-12">
       <div className="max-w-[1600px] mx-auto">
         <div className="flex justify-between items-end mb-12 border-b border-white/20 pb-4">
           <h2 className="text-4xl md:text-6xl uppercase font-bold tracking-tighter">Événements Passés</h2>

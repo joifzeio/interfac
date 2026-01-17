@@ -56,7 +56,7 @@ const NewsletterSection: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-black text-white py-24 px-4 md:px-12 border-t border-white/10">
+    <div className="w-full bg-transparent text-white py-24 px-4 md:px-12 border-t border-white/10">
       <div className="max-w-[1000px] mx-auto text-center">
         <h2 className="text-5xl md:text-8xl font-black uppercase leading-none tracking-tighter mb-8">
           {t('newsletter.title')}

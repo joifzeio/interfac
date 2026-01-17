@@ -21,7 +21,7 @@ const HeroSlider: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="relative w-full h-[85vh] md:h-screen bg-void-black overflow-hidden group">
+    <div className="relative w-full h-[85vh] md:h-screen bg-transparent overflow-hidden group">
       <video
         className="absolute inset-0 w-full h-full object-cover grayscale-[30%] opacity-80"
         src="/hero_interfac.mp4"
@@ -30,7 +30,7 @@ const HeroSlider: React.FC = () => {
         muted
         playsInline
       />
-      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="absolute inset-0 bg-black/20"></div>
 
       {/* Main Content */}
       <div className="absolute inset-0 flex items-center justify-center p-4 z-10 pointer-events-none translate-y-[12.5vh]">
