@@ -16,39 +16,42 @@ const NewsletterSection: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Stop the browser from doing its "empty envelope" thing
+    // 1. Prevent the browser's default submit (which causes the bug)
+    e.preventDefault();
 
     if (!email || !selectedCity) {
       toast.error(t('newsletter.error_missing'));
       return;
     }
 
+    // 2. Prepare the data MANUALLY (so it works even if inputs are disabled later)
+    const formData = new FormData();
+    formData.append('entry.549620649', email);          // Email ID
+    formData.append('entry.1562012737', selectedCity);  // City ID
+
+    // 3. Set loading (this disables inputs, but we already have the data in formData)
     setStatus('loading');
 
-    // Create the data manually so it doesn't matter if inputs are disabled
-    const formData = new FormData();
-    formData.append('entry.549620649', email);
-    formData.append('entry.1562012737', selectedCity);
-
     try {
-      // Send it via Javascript (Fetch)
+      // 4. Send directly to Google via code
       await fetch('https://docs.google.com/forms/d/e/1FAIpQLScSuAjZzJDktRBuEXFAEjvlNmPsHdYmyed-Ihn56wstnxcCDQ/formResponse', {
         method: 'POST',
         body: formData,
-        mode: 'no-cors' // Google Forms requirement
+        mode: 'no-cors' // Required for Google Forms
       });
 
-      // Success!
+      // 5. Success
       setStatus('success');
       toast.success(t('newsletter.success'));
       setEmail('');
       setSelectedCity('');
+
       setTimeout(() => setStatus('idle'), 3000);
 
     } catch (error) {
-      console.error('Submission error:', error);
+      console.error('Form Error:', error);
       setStatus('idle');
-      toast.error("Error submitting form. Please try again.");
+      toast.error("Connection error. Please try again.");
     }
   };
 
@@ -62,7 +65,7 @@ const NewsletterSection: React.FC = () => {
           {t('newsletter.desc')}
         </p>
 
-        {/* Removed the Iframe - We don't need it anymore */}
+        {/* Note: I removed the <iframe /> because we don't need it anymore */}
 
         <form
           onSubmit={handleSubmit}
