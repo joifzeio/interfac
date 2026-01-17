@@ -28,6 +28,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 const AppContent = () => {
   return (
     <TooltipProvider>
+      <div className="background-pattern" />
       <Toaster />
       <Sonner />
       <Routes>

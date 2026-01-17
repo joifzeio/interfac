@@ -115,7 +115,7 @@
     /* Ensure body is transparent to show pseudo-element */
   }
 
-  body::before {
+  .background-pattern {
     content: "";
     position: fixed;
     inset: 0;
