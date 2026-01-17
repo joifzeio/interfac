@@ -24,7 +24,7 @@ const EventsPage: React.FC = () => {
     };
 
     return (
-        <div className="bg-void-black min-h-screen flex flex-col">
+        <div className="bg-transparent min-h-screen flex flex-col">
             <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             <MenuOverlay isOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
 
@@ -51,8 +51,8 @@ const EventsPage: React.FC = () => {
 
                                     {/* Status Badge */}
                                     <div className={`absolute top-4 right-4 px-3 py-1 text-xs font-bold uppercase tracking-wider z-20 shadow-lg ${event.status === 'SELLING FAST' ? 'bg-action-orange text-white' :
-                                            event.status === 'SOLD OUT' ? 'bg-gray-600 text-white' :
-                                                'bg-purple-600 text-white'
+                                        event.status === 'SOLD OUT' ? 'bg-gray-600 text-white' :
+                                            'bg-purple-600 text-white'
                                         }`}>
                                         {getStatusText(event.status)}
                                     </div>

@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-void-black flex items-center justify-center p-4">
+        <div className="min-h-screen bg-transparent flex items-center justify-center p-4">
             <div className="bg-white/5 border border-white/10 p-8 rounded-sm w-full max-w-md">
                 <div className="flex justify-center mb-6 text-action-orange">
                     <Lock size={48} />

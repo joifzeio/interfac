@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
     }, [isMenuOpen, selectedEvent]);
 
     return (
-        <div className="bg-void-black min-h-screen text-white selection:bg-action-orange selection:text-white font-sans">
+        <div className="bg-transparent min-h-screen text-white selection:bg-action-orange selection:text-white font-sans">
             <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             <MenuOverlay isOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
 
