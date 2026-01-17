@@ -59,7 +59,7 @@ const App = () => {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 50000); // 50 seconds delay as requested
+    }, 3000); // 3 seconds delay as requested
 
     return () => clearTimeout(timer);
   }, []);
